@@ -47,8 +47,10 @@ def export_txt(clips):
             lines.append(clips[book][pos].encode('utf-8'))
 
         filename = os.path.join(OUTPUT_DIR, u"%s.md" % book)
+     
         with open(filename, 'wb') as f:
-            f.write("\n\n---\n\n".join(lines))
+        # Original is f.write("\n\n---\n\n".join(lines))
+            f.write(b"\n\n---\n\n".join(lines))
 
 
 def load_clips():
@@ -66,7 +68,8 @@ def save_clips(clips):
     """
     Save new clips to DATA_FILE
     """
-    with open(DATA_FILE, 'wb') as f:
+    # Original is with open(DATA_FILE, 'wb') as f:
+    with open(DATA_FILE, 'w') as f:
         json.dump(clips, f)
 
 
